@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 1 - Problem 53}
+\author{Vishnu Gollamudi}
+\date{January 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Question 53) Suppose (X,Y) follows bivariate normal distribution with means $\mu1  \mu2$, standard deviations $\sigma1$,$\sigma2$ and correlation coefficient $\rho$, where all parameters are un-known. Then, testing Ho: $\sigma1=\sigma2$ is equivalent to testing the independence of  
+\\
+1.) X and Y \\
+2.) X and X-Y \\
+3.) X+Y and Y \\
+4.) X+Y and X-Y \\
+
+Answer: 4, X+Y and X-Y\\
+\\
+Solution:
+Given X and Y are bi-variate random variables.  Bivariate random variables are distribution of normal distribution to two coordinates. If any two random variables, $ X_1 and X_2$ are said independent, then it follows that the co-relation co-efficient $\rho[X_1,X_2]$ is equal to 0. \\
+
+\quad \quad \quad \quad $\rho[X_1,X_2]$  = 0 \\
+\\
+We know that, for a bi-variate random variable correlation is given as follows:\\
+\quad \quad \quad $\rho[X,Y]$ = COV[X,Y] / \sqrt{Var[X] * Var[Y]}\\
+\\
+For for testing independence of [X+Y, X-Y], we need to see if  $\rho[X+Y,X-Y]$ becomes 0.
+if  $\rho[X+Y,X-Y]$  = 0, then it follows from the bivariate random distribution that COV[X+Y,X-Y] equates to 0\\
+\\
+We know that \ $COV[X+Y,Z] = COV[X,Z] + COV[Y,Z]$ \ \\
+\quad \ $COV[X,X] = Var[X]$ \ \\
+
+Now, $COV[X+Y, X-Y]$ \\
+= $COV[(X+Y)*X] - COV[(X+Y)*Y]$ \\
+= $COV[(X,X)] + COV[X,Y] - COV[X*Y] - COV[Y*Y]$ \\
+= $Var[X] - Var[Y]$\\
+\\
+
+Now testing for $\sigma_1 = \sigma_2 $ $=>$  $COV[X+Y,X-Y] = 0 $ $=>$ \\ $\rho[X+Y,X-Y]$ =  0\\
+Hence testing for   $\sigma_1 = \sigma_2 $ $=>$ $X+Y, X-Y$ are independent.
+
+\end{document}
