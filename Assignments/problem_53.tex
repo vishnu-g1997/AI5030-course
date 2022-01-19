@@ -26,7 +26,7 @@ Given X and Y are bi-variate random variables.  Bivariate random variables are d
 
 We know that, for a bi-variate random variable correlation is given as follows:
 \begin{equation*}
-    \rho[X,Y] = \frac{\sigma_[X,Y] } {\sqrt{\sigma_[X]^2 \times \sigma_[Y]^2}}
+    \rho[X,Y] = \frac{\sigma_{[X,Y]} } {\sqrt{\sigma_X^2 \times \sigma_Y^2}}
 \end{equation*}
 
 
@@ -39,35 +39,44 @@ We know that
   \sigma_{[X+Y,Z]} &= \sigma_{[X,Z]} + \sigma_{[Y,Z]} \\
   \sigma_{[X,X]} &= \sigma_{[X]}^2 
 \end{align}
-Testing for the independence of X,Y\\
-$\sigma_{[X,Y]}$ is always not equal to 0 when $\sigma_1^2 = \sigma_2^2$.\\
-Also if $\sigma_{[X,Y]}$ is equal to 0, it means that XY are in the form of\\
-$Y = C\times X$ or $Y=X^2$ or any $Y = f(X)$, which means both of them are dependent.
-So, $\sigma_1^2 = \sigma_2^2$ does not imply X,Y are in-dependant.\\
 
-Testing independence of X,X-Y\\
-\begin{align*}
+\begin{enumerate}
+\item \large{Testing for the independence of X,Y}
+\begin{enumerate}
+\item $\sigma_{[X,Y]}$ is always not equal to 0 when $\sigma_1^2 = \sigma_2^2$.
+\item Also if $\sigma_{[X,Y]}$ is equal to 0, it means that XY are in the form of $Y = C\times X$ or $Y=X^2$ or any $Y = f(X)$, which means both of them are dependent.
+\item So, $\sigma_1^2 = \sigma_2^2$ does not imply X,Y are in-dependant.\\
+\end{enumerate}
+
+\item \large{Testing independence of X,X-Y}
+\begin{enumerate}
+\item \begin{align*}
     \sigma_{[X-Y,X]} &= \sigma_{[X,X]} - \sigma_{[X,Y]}\\
                      &= \sigma_{X}^2 - \sigma_{[X,Y]}
 \end{align*}
-$\sigma_{X}^2 \neq \sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
+\item $\sigma_{X}^2 \neq \sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
+\end{enumerate}
 
-Testing for independence of X,X+Y\\
-\begin{align*}
-    \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
+\item \large Testing for independence of X,X+Y
+\begin{enumerate}
+\item \begin{align*}
+   \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
                      &= \sigma_{X}^2 + \sigma_{[X,Y]}
 \end{align*}
-$\sigma_{X}^2 \neq -\sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
-
-Testing for independance of X+Y,X-Y
-\begin{align*}
-& \hspace{5pt}COV[X+Y, X-Y]\\
-&= COV[(X+Y), X] - COV[(X+Y), Y] \\
-&= COV[(X,X)] + COV[X,Y] - COV[X,Y] - COV[Y,Y] \\
-&= Var[X] - Var[Y]\\
+\item $\sigma_{X}^2 \neq -\sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
+\end{enumerate}
+\item \large{Testing for independence of X+Y,X-Y}
+\begin{enumerate}
+\item \begin{align*}
+& \hspace{5pt} \sigma_{[X+Y, X-Y]}\\
+&= \sigma_{[(X+Y), X]}- \sigma_{[(X+Y), Y]} \\
+&= \sigma_{[X,X]} + \sigma_{[X,Y]} - \sigma_{[X,X]} - \sigma_{[X,Y]}  \\
+&= \sigma_X^2 - \sigma_Y^2
 \end{align*}
 
-Now testing for $\sigma_1 = \sigma_2 $ $\implies$ \\ $COV[X+Y,X-Y] = 0 $ $\Rightarrow$ $\rho[X+Y,X-Y]$ =  0\\
-Hence testing for   $\sigma_1 = \sigma_2 \implies X+Y, X-Y$ are independent.
-
+\item Now testing for $\sigma_1 = \sigma_2 $ $\implies$ $\sigma_{[X+Y,X-Y]}= 0$
+\item $\Rightarrow$ $\rho[X+Y,X-Y]$ =  0
+\item Hence testing for   $\sigma_1 = \sigma_2 \implies X+Y, X-Y$ are independent.
+\end{enumerate}
+\end{enumerate}
 \end{document}
