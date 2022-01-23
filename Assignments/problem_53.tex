@@ -37,14 +37,15 @@ We know that
 \\
 \begin{align}
   \sigma_{[X+Y,Z]} &= \sigma_{[X,Z]} + \sigma_{[Y,Z]} \\
-  \sigma_{[X,X]} &= \sigma_{[X]}^2 
+  \sigma_{[X,X]} &= \sigma_{[X]}^2 \\
+  \textit{if}\quad \sigma{[X,Y}] &= \sigma{[X]}^2 \quad \textit{then} \quad X=Y
 \end{align}
+\large (Proofs for above equations are given in appendix)
 
 \begin{enumerate}
 \item \large{Testing for the independence of X,Y}
 \begin{enumerate}
-\item $\sigma_{[X,Y]}$ is always not equal to 0 when $\sigma_1^2 = \sigma_2^2$.
-\item Also if $\sigma_{[X,Y]}$ is equal to 0, it means that XY are in the form of $Y = C\times X$ or $Y=X^2$ or any $Y = f(X)$, which means both of them are dependent.
+\item If $\sigma_{[X,Y]}$ is equal to 0, it means that XY are in the form of $Y = C\times X$, which means both of them are dependent.
 \item So, $\sigma_1^2 = \sigma_2^2$ does not imply X,Y are in-dependant.\\
 \end{enumerate}
 
@@ -54,6 +55,7 @@ We know that
     \sigma_{[X-Y,X]} &= \sigma_{[X,X]} - \sigma_{[X,Y]}\\
                      &= \sigma_{X}^2 - \sigma_{[X,Y]}
 \end{align*}
+\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=X$ which means they are dependant\\
 \item $\sigma_{X}^2 \neq \sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
 \end{enumerate}
 
@@ -63,6 +65,7 @@ We know that
    \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
                      &= \sigma_{X}^2 + \sigma_{[X,Y]}
 \end{align*}
+\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=-X$ which means they are dependant\\
 \item $\sigma_{X}^2 \neq -\sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
 \end{enumerate}
 \item \large{Testing for independence of X+Y,X-Y}
@@ -78,5 +81,32 @@ We know that
 \item $\Rightarrow$ $\rho[X+Y,X-Y]$ =  0
 \item Hence testing for   $\sigma_1 = \sigma_2 \implies X+Y, X-Y$ are independent.
 \end{enumerate}
+\end{enumerate}
+
+\large \textbf{Appendix}\\
+Covariance is a measure of how much two random variables vary together
+\begin{enumerate}
+    \item \large $\sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}$
+    \begin{align*}
+        \sigma_{[X+Y,Z]} &= E((X+Y - \mu_{X+Y}) \times (Z -\mu_{Z} ))\\
+        &= E((X+Y - \mu_{X}-\mu_{Y}) \times (Z -\mu_{Z} ))\\
+        &= E(XZ-X\mu_z+YZ-Y\mu_Z-Z\mu_X+\mu_X\mu_Z-\mu_YZ+\mu_Y\mu_Z)\\
+        &= E((XZ-\mu_ZX-\mu_XZ+\mu_z\mu_x) + (YZ-Y\mu_Z-\mu_YZ+\mu_Y\mu_Z))\\
+        &= E((X-\mu_X)(Z-\mu_Z)+ (Y-\mu_Y)(Z-\mu_Z))\\
+        &= E((X-\mu_X)(Z-\mu_Z)) + E((Y-\mu_Y)(Z-\mu_Z))\\
+        &=\sigma_{[X,Z]} + \sigma_{[Y,Z]}\\
+    \end{align*}
+    
+    \item \large  $ \sigma_{[X,Y]}= \sigma_{[X]}^2$\\
+    \begin{align*}
+        \sigma_{[X,Y]} &= E[(X-\mu_X) (Y-\mu_Y)],
+        \quad \textit{if}\quad Y=X \\
+        \sigma_{[X,X]} &= E[(X-\mu_X) (X-\mu_X)]\\
+        &=E[(X-\mu_X)^2]\\
+        &=\sigma_X^2
+    \end{align*}
+    
+    \item if $\sigma{[X,Y}] = \sigma{[X]}^2 \quad \textit{then} \quad X=Y$\\
+    From 2 it follows that  $\sigma{[X,Y}] = \sigma{[X]}^2$  when X=Y
 \end{enumerate}
 \end{document}
