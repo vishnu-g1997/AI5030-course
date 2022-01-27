@@ -38,14 +38,15 @@ We know that
 \begin{align}
   \sigma_{[X+Y,Z]} &= \sigma_{[X,Z]} + \sigma_{[Y,Z]} \\
   \sigma_{[X,X]} &= \sigma_{[X]}^2 \\
-  \textit{if}\quad \sigma{[X,Y}] &= \sigma{[X]}^2 \quad \textit{then} \quad X=Y
+  \textit{if}\quad \sigma{[X,Y}] &= \sigma{[X]}^2 \quad \textit{then} \quad X=Y\\
+  \sigma_{X,Y} &= 0 \implies Y,X \textit{are dependant}
 \end{align}
 \large (Proofs for above equations are given in appendix)
 
 \begin{enumerate}
 \item \large{Testing for the independence of X,Y}
 \begin{enumerate}
-\item If $\sigma_{[X,Y]}$ is equal to 0, it means that XY are in the form of $Y = C\times X$, which means both of them are dependent.
+\item If $\sigma_{[X,Y]}$ is equal to 0, means X and Y are dependant
 \item So, $\sigma_1^2 = \sigma_2^2$ does not imply X,Y are in-dependant.\\
 \end{enumerate}
 
@@ -107,6 +108,15 @@ Covariance is a measure of how much two random variables vary together
     \end{align*}
     
     \item if $\sigma{[X,Y}] = \sigma{[X]}^2 \quad \textit{then} \quad X=Y$\\
-    From 2 it follows that  $\sigma{[X,Y}] = \sigma{[X]}^2$  when X=Y
+    From 2 it follows that  $\sigma{[X,Y}] = \sigma{[X]}^2$  when X=Y\\
+    \item \large $\sigma_{X,Y} = 0 \implies Y,X$ are dependant\\
+    \begin{align*}
+        \sigma{[X,Y]} &= E((X-\mu_X) (Y-\mu_Y))\\
+        &= E[(XY) - \mu_XY - \mu_YX + \mu_X\mu_Y] \\
+        &= E(XY) - \mu_XE(Y) - \mu_YE(X) + \mu_X\mu_y\\
+        &= E(XY) -\mu_X\mu_Y - \mu_Y\mu_X + \mu_X\mu_Y\\
+        \sigma{[X,Y]} = 0 \implies E(XY) = E(X)E(Y) &\\
+    \end{align*}
+    if $E(XY) = E(X)E(Y) \textit{then} \rho(X,Y) = 1 \implies X,Y$ are dependant
 \end{enumerate}
 \end{document}
