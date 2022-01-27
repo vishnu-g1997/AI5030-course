@@ -1,0 +1,220 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\title{Assignment 1,2}
+\subtitle{Problem 53, 58 of UGC Math 2019}
+% \date{\today}
+\date{}
+\author{Vishnu G}
+\institute{Indian Institute of Technology Hyderabad}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents%[hideallsubsections]
+\end{frame}
+
+\section[Problem 53]{Problem 53}
+
+\begin{frame}[fragile]{Question}
+
+Suppose (X,Y) follows bivariate normal distribution with means $\mu1  \mu2$, standard deviations $\sigma1$,$\sigma2$ and correlation coefficient $\rho$, where all parameters are un-known. Then, testing Ho: $\sigma1=\sigma2$ is equivalent to testing the independence of  
+\\
+1.) X and Y \\
+2.) X and X-Y \\
+3.) X+Y and Y \\
+4.) X+Y and X-Y \\
+
+ \begin{verbatim}
+ Answer: 4
+ \end{verbatim}
+\end{frame}
+\begin{frame}[fragile]{Definition}
+\large \textbf{Bivariate Normal Distribution:}\\
+\small Distribution XY in 2 dimensions is said to be Bi-variate normal distribution if X and Y are independently normal distributions and are jointly normal in 2 dimensions. \\
+Correlation of of X,Y $\rho[X,Y] = \frac{\sigma_{[X,Y]} } {\sqrt{\sigma_X^2 \times \sigma_Y^2}}$\\
+If X,Y are independent then $\sigma_{XY}=0$\\
+So, for testing the independence, if we assume they are independent and then try to prove if $\sigma_{XY}=0$, for all the options, we can find out the answer.
+\end{frame}
+\begin{frame}{Known equations}
+\begin{equation} \label{eu_eqn_1}
+  \sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}
+\end{equation}
+\begin{equation} \label{eu_eqn_2}
+  \sigma_{[X,X]} = \sigma_{[X]}^2
+\end{equation}
+\begin{equation} \label{eu_eqn_3}
+  \textit{if}\quad \sigma{[X,Y}] = \sigma{[X]}^2 \quad \textit{then} \quad X=Y
+\end{equation}
+\begin{equation} \label{eu_eqn_4}
+  \sigma_{[X,Y]} = 0 \implies X,Y \textit{are dependent}
+\end{equation}
+\small (Proofs for above equations are given in the end)
+\end{frame}
+\begin{frame}{Testing Independence of X,Y}
+\begin{enumerate}
+\item If $\sigma_{[X,Y]}$ is equal to 0, from Eq \ref{eu_eqn_4} it means that $Y = X$, which means both of them are dependent\\
+ \begin{align*}
+        \sigma{[X,Y]} &= E((X-\mu_X) (Y-\mu_Y))\\
+        &= E[(XY) - \mu_XY - \mu_YX + \mu_X\mu_Y] \\
+        &= E(XY) - \mu_XE(Y) - \mu_YE(X) + \mu_X\mu_y\\
+        &= E(XY) -\mu_X\mu_Y - \mu_Y\mu_X + \mu_X\mu_Y\\
+        \sigma{[X,Y]} = 0 \implies E(XY) = E(X)E(Y) &\\
+ \end{align*}
+    if $E(XY) = E(X)E(Y)$ \textit{then} $\rho(X,Y) = 1 \implies X,Y$ are dependant
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Testing Independence of X and X-Y }
+\begin{enumerate}
+\item \begin{align*}
+    \sigma_{[X-Y,X]} &= \sigma_{[X,X]} - \sigma_{[X,Y]}\\
+                     &= \sigma_{X}^2 - \sigma_{[X,Y]}
+\end{align*}
+\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=X$ From Eq \ref{eu_eqn_3} which means they are dependant\\
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Testing independence of X+Y, Y}
+\begin{enumerate}
+\item \begin{align*}
+   \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
+                     &= \sigma_{X}^2 + \sigma_{[X,Y]}
+\end{align*}
+\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=-X$ which means they are dependant\\
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Testing for Independence of X+Y and X-Y}
+\begin{enumerate}
+\item \begin{align*}
+& \hspace{5pt} \sigma_{[X+Y, X-Y]}\\
+&= \sigma_{[(X+Y), X]}- \sigma_{[(X+Y), Y]} \\
+&= \sigma_{[X,X]} + \sigma_{[X,Y]} - \sigma_{[X,X]} - \sigma_{[X,Y]}  \\
+&= \sigma_X^2 - \sigma_Y^2
+\end{align*}
+\item Now testing for $\sigma_X = \sigma_Y $ $\implies$ $\sigma_{[X+Y,X-Y]}= 0$
+\item $\Rightarrow$ $\rho[X+Y,X-Y]$ =  0
+\item Hence testing for   $\sigma_X = \sigma_Y \implies X+Y, X-Y$ are independent.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{$\sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}$}
+    \begin{align*}
+        \sigma_{[X+Y,Z]} &= E((X+Y - \mu_{X+Y}) \times (Z -\mu_{Z} ))\\
+        &= E((X+Y - \mu_{X}-\mu_{Y}) \times (Z -\mu_{Z} ))\\
+        &= E(XZ-X\mu_z+YZ-Y\mu_Z-Z\mu_X+\mu_X\mu_Z-\mu_YZ+\mu_Y\mu_Z)\\
+        &= E((XZ-\mu_ZX-\mu_XZ+\mu_z\mu_x) + (YZ-Y\mu_Z-\mu_YZ+\mu_Y\mu_Z))\\
+        &= E((X-\mu_X)(Z-\mu_Z)+ (Y-\mu_Y)(Z-\mu_Z))\\
+        &= E((X-\mu_X)(Z-\mu_Z)) + E((Y-\mu_Y)(Z-\mu_Z))\\
+        &=\sigma_{[X,Z]} + \sigma_{[Y,Z]}\\
+    \end{align*}
+\end{frame}
+
+\begin{frame}{$\sigma_{[X,Y]}= \sigma_{[X]}^2$}
+        \begin{align*}
+        \sigma_{[X,Y]} &= E[(X-\mu_X) (Y-\mu_Y)],
+        \quad \textit{if}\quad Y=X \\
+        \sigma_{[X,X]} &= E[(X-\mu_X) (X-\mu_X)]\\
+        &=E[(X-\mu_X)^2]\\
+        &=\sigma_X^2
+    \end{align*}
+\end{frame}
+\section{Assignment 2}
+
+\begin{frame}[fragile]{Question}
+A sample of size $n = 2$ is drawn from a population of size $N = 4$ using probability proportional to size
+without replacement sampling scheme, where the probabilities proportional to size are\\
+The probability of inclusion of unit 1 in the sample is
+\begin{center}
+\begin{tabular}{ c c c c c}
+ i  & 1   & 2   & 3   & 4   \\ 
+ Pi & 0.4 & 0.2 & 0.2 & 0.2 \\  
+\end{tabular}
+\end{center}
+\begin{enumerate}
+    \item 0.4 
+    \item 0.6
+    \item 0.7
+    \item 0.75
+\end{enumerate}
+\large \textbf{Answer : Option - 3 - (0.7)}\\
+\end{frame}
+
+\begin{frame}{Definition of PPS without replacement}
+\begin{enumerate}
+    \item In a simple random sampling scheme, every unit in the population, has an equal probability of getting selected for a sample subset.
+    \item  But when if in a given population sizes of different classes are different, then probability that a sample belonging to a certain class ( or unit ) differs.
+    \item  Immediate repetition of a sample from same class is not allowed in PPSWOR
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Solution}
+For finding the inclusion probability of unit 1 in a sample of 2, we need find in how many ways unit 1 can be included in a sample of 2.
+\begin{enumerate}
+    \item $U_1$ is included in $1^st$ draw, and not in second draw
+    \item $U_1$ is not included in $1^st$ draw and is included in second draw.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Probability of $U_1$ being included in $2^{nd}$ draw}
+ $P_{i(2)}$ which is probability that $i^{th}$ unit is drawn from the population in the second draw. It can be derived as follows:\\
+$P_{i(2)}$ can occur in following possible ways:\\
+\begin{itemize}
+    \item $U_1$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw
+    \item $U_2$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw
+    \item .
+    \item .
+    \item $U_{i-1}$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw
+    \item $U_{i-1}$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw
+    \item $U_{N}$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Probability of $U_1$ being included in $2^{nd}$ draw}
+It has to be noted that $S_i$ is being skipped in for first draw because repetition is not allowed in PPS without replacement scheme.\\
+$S_1$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw is derived as\\
+Let $S_1$ is selected in $1^{st}$ draw be Event A, $S_i$ is selected at 2 as Event B\\
+\begin{align*}
+P (A,B) &= P(A) \times P(B/A), 
+\quad \textit{where}, P(A) = P_1, \\
+P(B/A) &=\frac{P_i}{1-(P_1)}
+\end{align*}
+P(B/A) = Population of $P_i$ over total remaining population, which is $1 - P_1$, because $P_1$ can not be selected again\\
+\end{frame}
+
+\begin{frame}{Probability of $U_1$ being included in $2^{nd}$ draw}
+\begin{align*}
+P_{i(2)} &= P1 \times \frac{P_i}{1-P_1} + P2 \times \frac{P_i}{1-P_2} + ... \\ &+ P_{i-1} \times \frac{P_{i}}{1-P_{i-1}} + P_{i+1} \times \frac{P_{i}}{1-P_{i+1}} + P_{N} \times \frac{P_{i}}{1-P_{N}}\\
+P_{i(2} &= \sum_{j=i}^N P_j \times \frac{P_i}{1-P_j} - P_i \times \frac{P_i}{1-P_i}
+\end{align*}
+\begin{align*}
+    P_{i(2)} &= \sum_{j=i}^N P_j \times \frac{P_i}{1-P_j} - P_i \times \frac{P_i}{1-P_i}\\
+    &= 0.4 \times \left (\frac{0.2}{1-0.2} + \frac{0.2}{1-0.2} + \frac{0.2}{1-0.2} + \frac{0.4}{1-0.4} - \frac{0.4}{1-0.4} \right)\\
+    &= 0.4 \times \left (\frac{0.6}{0.8} \right)\\
+    &=0.3
+\end{align*}
+\end{frame}
+
+\begin{frame}{Total inclusion probability of unit 1}
+\begin{itemize}
+\item The probability of inclusion of unit 1 in the sample is $P_{i(1)}+P_{i(2)}$
+\item 0.3+0,4 = 0.7
+\end{itemize}
+\end{frame}
+\end{document}
