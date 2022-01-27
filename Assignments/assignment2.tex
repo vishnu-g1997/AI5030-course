@@ -73,11 +73,11 @@ It has to be noted that $S_i$ is being skipped in for first draw because repitio
 $S_1$ is selected in $1^{st}$ draw and $S_i$ is selected at 2 draw is derived as\\
 Let $S_1$ is selected in $1^{st}$ draw be Event A, $S_i$ is selected at 2 as Event B
 \begin{align*}
-P (A,B) &= P(A) \times P(B), 
+P (A,B) &= P(A) \times P(B/A), 
 \quad \textit{where}, P(A) = P_1, \\
-P(B) &=\frac{P_i}{P_1 \textit{not happening}}\\
-     &= \frac{P_i}{1-P_i}
+P(B) &=\frac{P_i}{1-(P_1)}
 \end{align*}
+Population of $P_i$ over total remaining population, which is $1 - P_1$, because $P_1$ can not be selected again\\
 It should be noted that dependency of event B on A is removed inherently when, $S_i$ is skipped in the first draw when calculating the entire probability.
 \begin{align*}
 P_{i(2)} &= P1 \times \frac{P_i}{1-P_1} + P2 \times \frac{P_i}{1-P_2} + ... \\ &+ P_{i-1} \times \frac{P_{i}}{1-P_{i-1}} + P_{i+1} \times \frac{P_{i}}{1-P_{i+1}} + P_{N} \times \frac{P_{i}}{1-P_{N}}\\
