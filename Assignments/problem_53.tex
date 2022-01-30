@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
 \usepackage{amsmath, amsthm, amssymb, bm}
 \title{Assignment 1 - Problem 53}
 \author{Vishnu Gollamudi}
@@ -17,58 +19,72 @@ Question 53) Suppose (X,Y) follows bivariate normal distribution with means $\mu
 4.) X+Y and X-Y \\
 
 Answer: 4, X+Y and X-Y \\
-Solution:
-Given X and Y are bi-variate random variables.  Bivariate random variables are distribution of normal distribution to two coordinates. If any two random variables, $ X_1 and X_2$ are said independent, then it follows that the co-relation co-efficient $\rho[X_1,X_2]$ is equal to 0. \smallskip
+Solution: \\
+Bi-variate random variables are distribution of normal distribution to two coordinates. are said to be bivariate normal or jointly normal, if $aX+bY$ has normal distribution $\forall$ $a,b \in R$.
 
-\begin{equation*}
-\rho[X_1,X_2]  = 0
-\end{equation*}
+Random normal vector A =
+$\begin{bmatrix}
+ X\\
+ Y
+\end{bmatrix}$ is Bi-variate when it is jointly normal\\
+Joint PDF of A is given as\\
+\begin{align*}
+    f_a(A) &= \frac{1}{(2\pi)} \sqrt{det {C}} \quad exp \left \Bigg \{ \frac{-1}{2}(a-m) ^ T C^ {-1} (a-m) \right \Bigg \} \\
+    \textit{Where},
+    m &= \begin{bmatrix}
+         \mu_x\\
+         \mu_y
+        \end{bmatrix}\\
+    C &= \begin{bmatrix}
+         \rho \sigma_{x}^2 & \sigma_{xy}\\
+         \rho \sigma_{yx}  & \sigma_{y}^2
+        \end{bmatrix}
+\end{align*}
 
-We know that, for a bi-variate random variable correlation is given as follows:
-\begin{equation*}
-    \rho[X,Y] = \frac{\sigma_{[X,Y]} } {\sqrt{\sigma_X^2 \times \sigma_Y^2}}
-\end{equation*}
-
-
-For for testing independence of $[X+Y, X-Y]$, we need to see if  $\rho[X+Y,X-Y]$ becomes 0.\\
-if  $\rho[X+Y,X-Y]$  = 0, then it follows from the bivariate random distribution that $\sigma_{[X+Y,X-Y]}$ equates to 0\\
-\\
 We know that
 \\
 \begin{align}
   \sigma_{[X+Y,Z]} &= \sigma_{[X,Z]} + \sigma_{[Y,Z]} \\
   \sigma_{[X,X]} &= \sigma_{[X]}^2 \\
-  \textit{if}\quad \sigma{[X,Y}] &= \sigma{[X]}^2 \quad \textit{then} \quad X=Y\\
-  \sigma_{X,Y} &= 0 \implies Y,X \textit{are dependant}
+  \textit{if}\quad \sigma{[X,Y}] &= \sigma{[X]}^2 \quad \textit{then} \quad X=Y
 \end{align}
 \large (Proofs for above equations are given in appendix)
 
 \begin{enumerate}
 \item \large{Testing for the independence of X,Y}
 \begin{enumerate}
-\item If $\sigma_{[X,Y]}$ is equal to 0, means X and Y are dependant
-\item So, $\sigma_1^2 = \sigma_2^2$ does not imply X,Y are in-dependant.\\
+\item X,Y can be proven as indepndant if we can prove $\sigma_{XY} = 0$
+\item Or if joint PDF can be written as product of PDFs of X,Y
+\item With given $\sigma_X = \sigma_X$, both of them can not be proved, hence $H_0$ in dependency can not be tested.
+\item In NUll hypothesis if we can not prove X,Y are independant then it does not mean they are independant
 \end{enumerate}
 
 \item \large{Testing independence of X,X-Y}
 \begin{enumerate}
 \item \begin{align*}
     \sigma_{[X-Y,X]} &= \sigma_{[X,X]} - \sigma_{[X,Y]}\\
-                     &= \sigma_{X}^2 - \sigma_{[X,Y]}
+                     &= \sigma_{X}^2 - \sigma_{[X,Y]}\\
+    \sigma_{[X-Y,X]} = 0 \implies \sigma_{X}^2 = \sigma_{[X,Y]}
 \end{align*}
-\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=X$ which means they are dependant\\
-\item $\sigma_{X}^2 \neq \sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
+\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=X$ \\
 \end{enumerate}
+\begin{tcolorbox}
+\large \textbf{Argument}: \small $X-Y, X$ can be independent if and only if  $\sigma_{[X-Y,X]} = 0$. But $\sigma_{[X-Y,X]} = 0 \implies Y=X$, hence they are dependant irrespective of $\sigma_X = \sigma_Y$
+\end{tcolorbox}
 
 \item \large Testing for independence of X,X+Y
 \begin{enumerate}
 \item \begin{align*}
    \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
-                     &= \sigma_{X}^2 + \sigma_{[X,Y]}
+                    &= \sigma_{X}^2 + \sigma_{[X,Y]}\\
+                    \sigma_{[X+Y,X]} = 0 \implies \sigma_{X}^2 = \sigma_{[X,Y]}\\
 \end{align*}
 \item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=-X$ which means they are dependant\\
-\item $\sigma_{X}^2 \neq -\sigma_{[X,Y]}$ which $\implies$ X,X-Y are not independent\\
+\begin{tcolorbox}
+\large \textbf{Argument}: \small $X+Y, X$ can be independent if and only if  $\sigma_{[X-Y,X]} = 0$. But $\sigma_{[X-Y,X]} = 0 \implies Y=-X$, hence they are dependant irrespective of $\sigma_X = \sigma_Y$
+\end{tcolorbox}
 \end{enumerate}
+
 \item \large{Testing for independence of X+Y,X-Y}
 \begin{enumerate}
 \item \begin{align*}
@@ -79,44 +95,34 @@ We know that
 \end{align*}
 
 \item Now testing for $\sigma_1 = \sigma_2 $ $\implies$ $\sigma_{[X+Y,X-Y]}= 0$
-\item $\Rightarrow$ $\rho[X+Y,X-Y]$ =  0
 \item Hence testing for   $\sigma_1 = \sigma_2 \implies X+Y, X-Y$ are independent.
 \end{enumerate}
 \end{enumerate}
 
 \large \textbf{Appendix}\\
-Covariance is a measure of how much two random variables vary together
+Co variance is a measure of how much two random variables vary together
 \begin{enumerate}
     \item \large $\sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}$
     \begin{align*}
-        \sigma_{[X+Y,Z]} &= E((X+Y - \mu_{X+Y}) \times (Z -\mu_{Z} ))\\
-        &= E((X+Y - \mu_{X}-\mu_{Y}) \times (Z -\mu_{Z} ))\\
-        &= E(XZ-X\mu_z+YZ-Y\mu_Z-Z\mu_X+\mu_X\mu_Z-\mu_YZ+\mu_Y\mu_Z)\\
-        &= E((XZ-\mu_ZX-\mu_XZ+\mu_z\mu_x) + (YZ-Y\mu_Z-\mu_YZ+\mu_Y\mu_Z))\\
-        &= E((X-\mu_X)(Z-\mu_Z)+ (Y-\mu_Y)(Z-\mu_Z))\\
-        &= E((X-\mu_X)(Z-\mu_Z)) + E((Y-\mu_Y)(Z-\mu_Z))\\
-        &=\sigma_{[X,Z]} + \sigma_{[Y,Z]}\\
+        \sigma_{[X+Y,Z]} &= \mathbf{E[((X+Y) - E(X+Y)) (Z - EZ)^T ]}\\
+        &= \mathbf{E((X+Y - \mu_{X}-\mu_{Y})  (Z^T -\mu_{Z}^T ))}\\
+        &= \mathbf{E(XZ^T-X\mu_z^T + YZ^T - Y\mu_Z^T - \mu_X Z^T+ \mu_X\mu_Z^T-
+        \mu_YZ^T+\mu_Y\mu_Z^T)}\\
+        &= \mathbf{E((XZ^T-X\mu_Z^T-\mu_XZ^T+\mu_x\mu_z^T) + (YZ^T-Y\mu_Z^T-\mu_YZ^T+\mu_Y\mu_Z^T))}\\
+        &= \mathbf{E((X-\mu_X)(Z^T-\mu_Z^T)+ (Y-\mu_Y)(Z^T-\mu_Z^T))}\\
+        &= \mathbf{E((X-\mu_X)(Z-\mu_Z)^T) + E((Y-\mu_Y)(Z-\mu_Z)^T)}\\
+        &=\mathbf{\sigma_{[X,Z]} + \sigma_{[Y,Z]}}\\
     \end{align*}
     
     \item \large  $ \sigma_{[X,Y]}= \sigma_{[X]}^2$\\
     \begin{align*}
-        \sigma_{[X,Y]} &= E[(X-\mu_X) (Y-\mu_Y)],
+        \sigma_{[X,Y]} &= \mathbf{E[(X-\mu_X) (Y-\mu_Y)^T]},
         \quad \textit{if}\quad Y=X \\
-        \sigma_{[X,X]} &= E[(X-\mu_X) (X-\mu_X)]\\
-        &=E[(X-\mu_X)^2]\\
+        \sigma_{[X,X]} &= \mathbf{E[(X-\mu_X) (X-\mu_X)^T]}\\
         &=\sigma_X^2
     \end{align*}
     
     \item if $\sigma{[X,Y}] = \sigma{[X]}^2 \quad \textit{then} \quad X=Y$\\
     From 2 it follows that  $\sigma{[X,Y}] = \sigma{[X]}^2$  when X=Y\\
-    \item \large $\sigma_{X,Y} = 0 \implies Y,X$ are dependant\\
-    \begin{align*}
-        \sigma{[X,Y]} &= E((X-\mu_X) (Y-\mu_Y))\\
-        &= E[(XY) - \mu_XY - \mu_YX + \mu_X\mu_Y] \\
-        &= E(XY) - \mu_XE(Y) - \mu_YE(X) + \mu_X\mu_y\\
-        &= E(XY) -\mu_X\mu_Y - \mu_Y\mu_X + \mu_X\mu_Y\\
-        \sigma{[X,Y]} = 0 \implies E(XY) = E(X)E(Y) &\\
-    \end{align*}
-    if $E(XY) = E(X)E(Y) \textit{then} \rho(X,Y) = 1 \implies X,Y$ are dependant
 \end{enumerate}
 \end{document}
