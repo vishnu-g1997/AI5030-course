@@ -1,220 +1,215 @@
-\documentclass[10pt]{beamer}
-
-\usetheme[progressbar=frametitle]{metropolis}
-\usepackage{appendixnumberbeamer}
-
-\usepackage{booktabs}
-\usepackage[scale=2]{ccicons}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
 \usepackage{tikz,lipsum,lmodern}
 \usepackage[most]{tcolorbox}
-\usepackage{pgfplots}
-\usepgfplotslibrary{dateplot}
-
-\usepackage{xspace}
-\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
-
-\title{Assignment 1,2}
-\subtitle{Problem 53, 58 of UGC Math 2019}
-% \date{\today}
-\date{}
-\author{Vishnu G}
-\institute{Indian Institute of Technology Hyderabad}
-% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+\usepackage{amsmath, amsthm, amssymb, bm}
+\title{Assignment 1 - Problem 53}
+\author{Vishnu Gollamudi}
+\date{January 2022}
 
 \begin{document}
 
 \maketitle
 
-\begin{frame}{Table of contents}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents%[hideallsubsections]
-\end{frame}
-
-\section[Assignment 1]{Assignment 1}
-
-\begin{frame}[fragile]{Question}
-
-Suppose (X,Y) follows bivariate normal distribution with means $\mu1  \mu2$, standard deviations $\sigma1$,$\sigma2$ and correlation coefficient $\rho$, where all parameters are un-known. Then, testing Ho: $\sigma1=\sigma2$ is equivalent to testing the independence of  
+Question 53) Suppose (X,Y) follows bivariate normal distribution with means $\mu1  \mu2$, standard deviations $\sigma1$,$\sigma2$ and correlation coefficient $\rho$, where all parameters are un-known. Then, testing Ho: $\sigma1=\sigma2$ is equivalent to testing the independence of  
 \\
 1.) X and Y \\
 2.) X and X-Y \\
 3.) X+Y and Y \\
 4.) X+Y and X-Y \\
 
- \begin{verbatim}
- Answer: 4
- \end{verbatim}
-\end{frame}
-\begin{frame}[fragile]{Definition}
-\large \textbf{Bivariate Normal Distribution:}\\
-\small Distribution XY in 2 dimensions is said to be Bi-variate normal distribution if X and Y are independently normal distributions and are jointly normal in 2 dimensions. \\
-Correlation of of X,Y $\rho[X,Y] = \frac{\sigma_{[X,Y]} } {\sqrt{\sigma_X^2 \times \sigma_Y^2}}$\\
-If X,Y are independent then $\sigma_{XY}=0$\\
-So, for testing the independence, if we assume they are independent and then try to prove if $\sigma_{XY}=0$, for all the options, we can find out the answer.
-\end{frame}
-\begin{frame}{Known equations}
-\begin{equation} \label{eu_eqn_1}
-  \sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}
-\end{equation}
-\begin{equation} \label{eu_eqn_2}
-  \sigma_{[X,X]} = \sigma_{[X]}^2
-\end{equation}
-\begin{equation} \label{eu_eqn_3}
-  \textit{if}\quad \sigma{[X,Y}] = \sigma{[X]}^2 \quad \textit{then} \quad X=Y
-\end{equation}
-\small (Proofs for above equations are given in the end)
-\end{frame}
-\begin{frame}{Testing Independence of X,Y}
- \begin{align*}
-        \sigma{[X,Y]} &= E((X-\mu_X) (Y-\mu_Y))\\
-        &= E[(XY) - \mu_XY - \mu_YX + \mu_X\mu_Y] \\
-        &= E(XY) -\mu_X\mu_Y - \mu_Y\mu_X + \mu_X\mu_Y\\
-        &= E(XY) - E(X)E(Y) &\\
-        &\sigma{[X,Y]} = 0 \implies E(XY)  = E(X)E(Y)
- \end{align*}
-  \begin{align*}
-        \sigma{[X,X]} &=\sigma{[Y,Y]}\\
-        &\implies E[(X-\mu_X)^2] =  E[(Y-\mu_Y)^2] \\
-        &\implies E[X^2] - E[X]^2 = E[Y^2] - E[Y]^2\\
- \end{align*}
-\begin{tcolorbox}
-\large \textbf{Argument}: \small Both equations can not be solved with the given hypothesis, so can not comment on the in dependency
-\end{tcolorbox}
-\end{frame}
+Answer: 4, X+Y and X-Y \\
+\section{Solution:} 
+\subsection{Definition of Bivariate Gaussian and its independency}
+Bi-variate random variables are distribution of normal distribution to two coordinates. are said to be bivariate normal or jointly normal, if $aX+bY$ has normal distribution $\forall$ $a,b \in R$.
 
-\begin{frame}{Testing Independence of X and X-Y }
-\begin{enumerate}
-\item \begin{align*}
-    \sigma_{[X-Y,X]} &= \sigma_{[X,X]} - \sigma_{[X,Y]}\\
-                     &= \sigma_{X}^2 - \sigma_{[X,Y]}\\
-    \sigma_{[X-Y,X]} = 0 \implies \sigma_{X}^2 = \sigma_{[X,Y]}
-\end{align*}
-\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=X$ From Eq, \ref{eu_eqn_3}\\
-\end{enumerate}
-\begin{tcolorbox}
-\large \textbf{Argument}: \small $X-Y, X$ can be independent if and only if  $\sigma_{[X-Y,X]} = 0$. But $\sigma_{[X-Y,X]} = 0 \implies Y=X$, hence they are dependant irrespective of $\sigma_X = \sigma_Y$
-\end{tcolorbox}
-\end{frame}
-
-\begin{frame}{Testing independence of X+Y, Y}
-\begin{enumerate}
-\item \begin{align*}
-   \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
-                    &= \sigma_{X}^2 + \sigma_{[X,Y]}\\
-                    \sigma_{[X+Y,X]} = 0 \implies \sigma_{X}^2 = \sigma_{[X,Y]}\\
-\end{align*}
-\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=-X$ which means they are dependant\\
-\begin{tcolorbox}
-\large \textbf{Argument}: \small $X+Y, X$ can be independent if and only if  $\sigma_{[X-Y,X]} = 0$. But $\sigma_{[X-Y,X]} = 0 \implies Y=-X$, hence they are dependant irrespective of $\sigma_X = \sigma_Y$
-\end{tcolorbox}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Testing for Independence of X+Y and X-Y}
-\begin{enumerate}
-\item \begin{align*}
-& \hspace{5pt} \sigma_{[X+Y, X-Y]}\\
-&= \sigma_{[(X+Y), X]}- \sigma_{[(X+Y), Y]} \\
-&= \sigma_{[X,X]} + \sigma_{[X,Y]} - \sigma_{[X,X]} - \sigma_{[X,Y]}  \\
-&= \sigma_X^2 - \sigma_Y^2
-\end{align*}
-\item Now testing for $\sigma_X = \sigma_Y $ $\implies$ $\sigma_{[X+Y,X-Y]}= 0$
-\item Hence testing for   $\sigma_X = \sigma_Y \implies X+Y, X-Y$ are independent.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{$\sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}$}
-    \begin{align*}
-        \sigma_{[X+Y,Z]} &= E((X+Y - \mu_{X+Y}) \times (Z -\mu_{Z} ))\\
-        &= E((X+Y - \mu_{X}-\mu_{Y}) \times (Z -\mu_{Z} ))\\
-        &= E(XZ-X\mu_z+YZ-Y\mu_Z-Z\mu_X+\mu_X\mu_Z-\mu_YZ+\mu_Y\mu_Z)\\
-        &= E((XZ-\mu_ZX-\mu_XZ+\mu_z\mu_x) + (YZ-Y\mu_Z-\mu_YZ+\mu_Y\mu_Z))\\
-        &= E((X-\mu_X)(Z-\mu_Z)+ (Y-\mu_Y)(Z-\mu_Z))\\
-        &= E((X-\mu_X)(Z-\mu_Z)) + E((Y-\mu_Y)(Z-\mu_Z))\\
-        &=\sigma_{[X,Z]} + \sigma_{[Y,Z]}\\
-    \end{align*}
-\end{frame}
-
-\begin{frame}{$\sigma_{[X,Y]}= \sigma_{[X]}^2$}
-        \begin{align*}
-        \sigma_{[X,Y]} &= E[(X-\mu_X) (Y-\mu_Y)],
-        \quad \textit{if}\quad Y=X \\
-        \sigma_{[X,X]} &= E[(X-\mu_X) (X-\mu_X)]\\
-        &=E[(X-\mu_X)^2]\\
-        &=\sigma_X^2
-    \end{align*}
-\end{frame}
-\section{Assignment 2}
-
-\begin{frame}[fragile]{Question}
-A sample of size $n = 2$ is drawn from a population of size $N = 4$ using probability proportional to size
-without replacement sampling scheme, where the probabilities proportional to size are\\
-The probability of inclusion of unit 1 in the sample is
-\begin{center}
-\begin{tabular}{ c c c c c}
- i  & 1   & 2   & 3   & 4   \\ 
- Pi & 0.4 & 0.2 & 0.2 & 0.2 \\  
-\end{tabular}
-\end{center}
-\begin{enumerate}
-    \item 0.4 
-    \item 0.6
-    \item 0.7
-    \item 0.75
-\end{enumerate}
-\large \textbf{Answer : Option - 3 - (0.7)}\\
-\end{frame}
-
-\begin{frame}{Definition of PPS without replacement}
-\begin{enumerate}
-    \item \large \textbf {Sampling}: Selecting smaller units from a large population
-    \item \large \textbf{Simple Sampling scheme}: Probability of selecting every unit is uniformly distributed  \\
-     $P(U_1) = P(U_2) .... = P(U_n)$\\
-    \item  \large \textbf{PPS WOR}: When P selection of every unit is not same,
-    repetition is not allowed
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Solution}
-For finding the inclusion probability of unit 1 in a sample of 2, we need find in how many ways unit 1 can be included in a sample of 2.
-\begin{enumerate}
-    \item $P_1(1) = P_1$
-    \item $P_1(2) $
-\end{enumerate}
-P = $P_1(1) + P_1(2)$
-\end{frame}
-
-\begin{frame}{contd ..}
-$P_{i(2)}$ can occur in following possible ways:\\
-\begin{itemize}
-    \item $U_2$ is selected in $1^{st}$ draw and $U_1$ is selected at 2 draw
-    \item $U_3$ is selected in $1^{st}$ draw and $U_1$ is selected at 2 draw
-    \item $U_4$ is selected in $1^{st}$ draw and $U_1$ is selected at 2 draw
-\end{itemize}
-$P_{i(2)} = \sum_2^4 P_i(1) \times P_1(2)$
-\end{frame}
-
-\begin{frame}{contd ..)}
+Random normal vector Z =
+$\begin{bmatrix}
+ X\\
+ Y
+\end{bmatrix}$ is Bi-variate when it is jointly normal\\
+Joint PDF of Z is given as\\
 \begin{align*}
-P_i(1) \times P_1(2) &= P_i(1) \times P_1(U_1/U_i)\\
-P_1(U_1/U_i) &= P_1 / 1 -  P_i
+    f_z(Z) &= \frac{1} {2\pi\sqrt{det {\Sigma}}} \quad \exp \left \{  \frac{-1}{2}(z-m) ^ T \Sigma^{-1} (z-m) \right \} \\
+    \textit{Where},\\
+    \textit{m} &= \begin{bmatrix}
+         \mu_x\\
+         \mu_y
+        \end{bmatrix}, \quad, \Sigma = \mathbf{[[Z - E(Z)] [Z - E(Z)]^T]}\\
+    \Sigma = \begin{bmatrix}
+         \sigma_{X}^2               &    \rho \sigma_{X} \sigma_{Y}\\
+         \rho \sigma_{Y} \sigma_{X}  &    \sigma_{Y}^2
+        \end{bmatrix}
 \end{align*}
-$P_1$ over $1 - P_i$, because $U_i$ can not be selected again\\
-\end{frame}
 
-\begin{frame}{contd ..}
+If X, Y, which  are independent, then they are un-correlated or their co-variances are $\rho \sigma_{Y} \sigma_{X} = 0$ then co-variance matrix becomes a diagonal matrix\\
 \begin{align*}
-    P_{i(2)} &= \sum_{i=2}^4 P_i \times \frac{P_1}{1-P_i(0)} \\
-    &= 0.4 \times \left (\frac{0.2}{1-0.2} + \frac{0.2}{1-0.2} + \frac{0.2}{1-0.2} \right)\\
-    &= 0.4 \times \left (\frac{0.6}{0.8} \right)\\
-    &=0.3
+    \Sigma = \begin{bmatrix}
+         \sigma_{X}^2                  &     \rho \sigma_{X} \sigma_{Y}\\
+         \rho \sigma_{Y} \sigma_{X}     &      \sigma_{Y}^2
+        \end{bmatrix} 
+        = \begin{bmatrix}
+         \sigma_{X}^2      & 0\\
+          0  & \sigma_{Y}^2
+        \end{bmatrix}
+\end{align*}\\
+\subsection{Co-variance Matrix}
+    $\Sigma = [[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T]$\\
+    \\\textit{When}, \hspace{5pt} \textbf{Z = TZ}, \hspace{5pt} \textit{Where T is a transformation}\\
+\begin{align*}
+    \Sigma_{TZ} &= [[\mathbf{TZ} - E(\mathbf{TZ})][\mathbf{TZ} - E(\mathbf{TZ})]^T]\\
+    &= [[T\mathbf{Z} - T E(\mathbf{Z})][T\mathbf{Z} - TE(\mathbf{Z})]^T]\\
+    &= [T[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T T^T]\\
+    &= [T[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T T^T]\\
+    &=  [T \Sigma T^T]\\
+    \textit{Where} [[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T] = \Sigma
 \end{align*}
-\end{frame}
+\begin{equation}
+    \Sigma_{TZ} = [T \Sigma T^T]
+\end{equation}
 
-\begin{frame}{contd ..}
-\begin{itemize}
-\item The probability of inclusion of unit 1 in the sample is $P_{i(1)}+P_{i(2)}$
-\item 0.3+0,4 = 0.7
-\end{itemize}
-\end{frame}
+\subsection{Evaluating option 1}:
+Given $\sigma_x = \sigma_y$
+\begin{align*}
+    \Sigma = \begin{bmatrix}
+    \sigma_{X}^2              &  \rho \sigma_{X} \sigma_{X} \\
+    \rho \sigma_{X} \sigma_{X}  &   \sigma_{Y}^2 
+\end{bmatrix} = 
+    \begin{bmatrix}
+    \sigma_{X}^2          &  \rho \sigma_{X}^2 \\
+    \rho \sigma_{X}^2      &   \sigma_{X}^2 
+\end{bmatrix} = \sigma_{X}^2 
+    \begin{bmatrix}
+    1          &  \rho \\
+    \rho       &   1
+\end{bmatrix}
+\end{align*}
+$\Sigma$ is not a diagonal matrix so components of Z in option 1 are not independent
+\subsection{Evaluating option 2}
+X, X-Y can be written as
+$\begin{bmatrix}
+   1   &   0\\
+   1   &   -1
+\end{bmatrix}
+\begin{bmatrix}
+   X \\
+   Y
+\end{bmatrix}$\\
+Where T = $\begin{bmatrix}
+   1   &   0\\
+   1   &   -1
+\end{bmatrix}$, Z = $\begin{bmatrix}
+   X \\
+   Y
+\end{bmatrix}$\\
+\\
+Co-variance matrix $\Sigma$ for X, X-Y
+From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$
+\begin{align*}
+    \Sigma_{TZ} &= \begin{bmatrix}
+   1   &   0\\
+   1   &   -1
+\end{bmatrix} \sigma_X^2 
+\begin{bmatrix}
+   1    & \rho \\
+   \rho &  1 
+\end{bmatrix}
+\begin{bmatrix}
+   1   &   1\\
+   0   &   -1
+\end{bmatrix}
+&= \sigma_X^2 \begin{bmatrix}
+    1         &   \rho\\
+    1 - \rho  &    \rho - 1
+\end{bmatrix}
+\begin{bmatrix}
+    1     &   1\\
+    0     & - 1
+\end{bmatrix}\\
+& = \sigma^2 \begin{bmatrix}
+   1         &    1 - \rho\\
+   1 - \rho  &    2 - \rho
+\end{bmatrix}
+\end{align*}
+$\Sigma_{TZ}$ is not a diagonal matrix, so components of TZ are not independent
+
+\subsection{Evaluating option 3}
+X+Y and Y can be written as $\begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+\end{bmatrix} 
+\begin{bmatrix}
+    X \\
+    Y
+\end{bmatrix}$\\
+Where T = $\begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+\end{bmatrix}, Z = \begin{bmatrix}
+   X \\
+   Y
+\end{bmatrix}$\\
+\\
+Co-variance matrix $\Sigma$ for X+Y, Y
+From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$\\
+\begin{align*}
+\Sigma_{TZ} &= \begin{bmatrix}
+   1   &   1\\
+   0   &   1
+\end{bmatrix} \sigma_X^2 
+\begin{bmatrix}
+   1    & \rho \\
+   \rho &  1 
+\end{bmatrix}
+\begin{bmatrix}
+   1   &   0\\
+   1   &   1
+\end{bmatrix}\\
+& = \sigma_x^2
+\begin{bmatrix}
+   2 + 2\rho   &  \rho + 1\\
+   \rho + 1    &   1
+\end{bmatrix}
+\end{align*}
+$\Sigma_{TZ}$ is not a diagonal matrix, so components of TZ are not independent
+
+\subsection{Evaluating option 4}
+X+Y and X-Y can be written as 
+$\begin{bmatrix}
+    1 &  1 \\
+    1 & -1
+\end{bmatrix} 
+\begin{bmatrix}
+    X \\
+    Y
+\end{bmatrix}$\\
+From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$
+
+\begin{align*}
+    \Sigma_{TZ} &= \begin{bmatrix}
+   1   &   1\\
+   1   &   -1
+\end{bmatrix} \sigma_X^2 
+\begin{bmatrix}
+   1    & \rho \\
+   \rho &  1 
+\end{bmatrix}
+\begin{bmatrix}
+   1   &   1\\
+   1   &   -1
+\end{bmatrix}\\
+&= \sigma_x^2 \begin{bmatrix}
+    1 + \rho   &   \rho + 1\\
+    1 - \rho   &    \rho - 1
+\end{bmatrix} 
+\begin{bmatrix}
+   1   &   1\\
+   1   &   -1
+\end{bmatrix} \\&=
+\begin{bmatrix}
+   2+\rho    &     0\\
+   0         &     2-2\rho
+\end{bmatrix}
+\end{align*}
+\textbf{Hence option 4 is correct}
 \end{document}
