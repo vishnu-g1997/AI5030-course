@@ -19,110 +19,197 @@ Question 53) Suppose (X,Y) follows bivariate normal distribution with means $\mu
 4.) X+Y and X-Y \\
 
 Answer: 4, X+Y and X-Y \\
-Solution: \\
+\section{Solution:} 
+\subsection{Definition of Bivariate Gaussian and its independency}
 Bi-variate random variables are distribution of normal distribution to two coordinates. are said to be bivariate normal or jointly normal, if $aX+bY$ has normal distribution $\forall$ $a,b \in R$.
 
-Random normal vector A =
+Random normal vector Z =
 $\begin{bmatrix}
  X\\
  Y
 \end{bmatrix}$ is Bi-variate when it is jointly normal\\
-Joint PDF of A is given as\\
+Joint PDF of Z is given as\\
 \begin{align*}
-    f_a(A) &= \frac{1}{(2\pi)} \sqrt{det {C}} \quad exp \left \Bigg \{ \frac{-1}{2}(a-m) ^ T C^ {-1} (a-m) \right \Bigg \} \\
-    \textit{Where},
-    m &= \begin{bmatrix}
+    f_z(Z) &= \frac{1} {2\pi\sqrt{det {\Sigma}}} \quad \exp \left \{  \frac{-1}{2}(z-m) ^ T \Sigma^{-1} (z-m) \right \} \\
+    \textit{Where},\\
+    \textit{m} &= \begin{bmatrix}
          \mu_x\\
          \mu_y
-        \end{bmatrix}\\
-    C &= \begin{bmatrix}
-         \rho \sigma_{x}^2 & \sigma_{xy}\\
-         \rho \sigma_{yx}  & \sigma_{y}^2
+        \end{bmatrix}, \quad, \Sigma = \mathbf{[[Z - E(Z)] [Z - E(Z)]^T]}\\
+    \Sigma = \begin{bmatrix}
+         \sigma_{X}^2               &    \rho \sigma_{X} \sigma_{Y}\\
+         \rho \sigma_{Y} \sigma_{X}  &    \sigma_{Y}^2
         \end{bmatrix}
 \end{align*}
 
-We know that
+If X, Y, which  are independent, then they are un-correlated or their co-variances are $\rho \sigma_{Y} \sigma_{X} = 0$ then co-variance matrix becomes a diagonal matrix\\
+\begin{align*}
+    \Sigma = \begin{bmatrix}
+         \sigma_{X}^2                  &     \rho \sigma_{X} \sigma_{Y}\\
+         \rho \sigma_{Y} \sigma_{X}     &      \sigma_{Y}^2
+        \end{bmatrix} 
+        = \begin{bmatrix}
+         \sigma_{X}^2      & 0\\
+          0  & \sigma_{Y}^2
+        \end{bmatrix}
+\end{align*}\\
+\subsection{Co-variance Matrix}
+    $\Sigma = [[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T]$\\
+    \\\textit{When}, \hspace{5pt} \textbf{Z = TZ}, \hspace{5pt} \textit{Where T is a transformation}\\
+\begin{align*}
+    \Sigma_{TZ} &= [[\mathbf{TZ} - E(\mathbf{TZ})][\mathbf{TZ} - E(\mathbf{TZ})]^T]\\
+    &= [[T\mathbf{Z} - T E(\mathbf{Z})][T\mathbf{Z} - TE(\mathbf{Z})]^T]\\
+    &= [T[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T T^T]\\
+    &= [T[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T T^T]\\
+    &=  [T \Sigma T^T]\\
+    \textit{Where} [[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T] = \Sigma
+\end{align*}
+\begin{equation}
+    \Sigma_{TZ} = [T \Sigma T^T]
+\end{equation}
+
+\subsection{Evaluating option 1}:
+Given $\sigma_x = \sigma_y$
+\begin{align*}
+    \Sigma = \begin{bmatrix}
+    \sigma_{X}^2              &  \rho \sigma_{X} \sigma_{X} \\
+    \rho \sigma_{X} \sigma_{X}  &   \sigma_{Y}^2 
+\end{bmatrix} = 
+    \begin{bmatrix}
+    \sigma_{X}^2          &  \rho \sigma_{X}^2 \\
+    \rho \sigma_{X}^2      &   \sigma_{X}^2 
+\end{bmatrix} = \sigma_{X}^2 
+    \begin{bmatrix}
+    1          &  \rho \\
+    \rho       &   1
+\end{bmatrix}
+\end{align*}
+$\Sigma$ is not a diagonal matrix so components of Z in option 1 are not independent
+\subsection{Evaluating option 2}
+X, X-Y can be written as
+$\begin{bmatrix}
+   1   &   0\\
+   1   &   -1
+\end{bmatrix}
+\begin{bmatrix}
+   X \\
+   Y
+\end{bmatrix}$\\
+Where T = $\begin{bmatrix}
+   1   &   0\\
+   1   &   -1
+\end{bmatrix}$, Z = $\begin{bmatrix}
+   X \\
+   Y
+\end{bmatrix}$\\
 \\
-\begin{align}
-  \sigma_{[X+Y,Z]} &= \sigma_{[X,Z]} + \sigma_{[Y,Z]} \\
-  \sigma_{[X,X]} &= \sigma_{[X]}^2 \\
-  \textit{if}\quad \sigma{[X,Y}] &= \sigma{[X]}^2 \quad \textit{then} \quad X=Y
-\end{align}
-\large (Proofs for above equations are given in appendix)
-
-\begin{enumerate}
-\item \large{Testing for the independence of X,Y}
-\begin{enumerate}
-\item X,Y can be proven as indepndant if we can prove $\sigma_{XY} = 0$
-\item Or if joint PDF can be written as product of PDFs of X,Y
-\item With given $\sigma_X = \sigma_X$, both of them can not be proved, hence $H_0$ in dependency can not be tested.
-\item In NUll hypothesis if we can not prove X,Y are independant then it does not mean they are independant
-\end{enumerate}
-
-\item \large{Testing independence of X,X-Y}
-\begin{enumerate}
-\item \begin{align*}
-    \sigma_{[X-Y,X]} &= \sigma_{[X,X]} - \sigma_{[X,Y]}\\
-                     &= \sigma_{X}^2 - \sigma_{[X,Y]}\\
-    \sigma_{[X-Y,X]} = 0 \implies \sigma_{X}^2 = \sigma_{[X,Y]}
+Co-variance matrix $\Sigma$ for X, X-Y
+From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$
+\begin{align*}
+    \Sigma_{TZ} &= \begin{bmatrix}
+   1   &   0\\
+   1   &   -1
+\end{bmatrix} \sigma_X^2 
+\begin{bmatrix}
+   1    & \rho \\
+   \rho &  1 
+\end{bmatrix}
+\begin{bmatrix}
+   1   &   1\\
+   0   &   -1
+\end{bmatrix}
+&= \sigma_X^2 \begin{bmatrix}
+    1         &   \rho\\
+    1 - \rho  &    \rho - 1
+\end{bmatrix}
+\begin{bmatrix}
+    1     &   1\\
+    0     & - 1
+\end{bmatrix}\\
+& = \sigma^2 \begin{bmatrix}
+   1         &    1 - \rho\\
+   1 - \rho  &    2 - \rho
+\end{bmatrix}
 \end{align*}
-\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=X$ \\
-\end{enumerate}
-\begin{tcolorbox}
-\large \textbf{Argument}: \small $X-Y, X$ can be independent if and only if  $\sigma_{[X-Y,X]} = 0$. But $\sigma_{[X-Y,X]} = 0 \implies Y=X$, hence they are dependant irrespective of $\sigma_X = \sigma_Y$
-\end{tcolorbox}
+$\Sigma_{TZ}$ is not a diagonal matrix, so components of TZ are not independent
 
-\item \large Testing for independence of X,X+Y
-\begin{enumerate}
-\item \begin{align*}
-   \sigma_{[X+Y,X]} &= \sigma_{[X,X]} + \sigma_{[X,Y]}\\
-                    &= \sigma_{X}^2 + \sigma_{[X,Y]}\\
-                    \sigma_{[X+Y,X]} = 0 \implies \sigma_{X}^2 = \sigma_{[X,Y]}\\
+\subsection{Evaluating option 3}
+X+Y and Y can be written as $\begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+\end{bmatrix} 
+\begin{bmatrix}
+    X \\
+    Y
+\end{bmatrix}$\\
+Where T = $\begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+\end{bmatrix}, Z = \begin{bmatrix}
+   X \\
+   Y
+\end{bmatrix}$\\
+\\
+Co-variance matrix $\Sigma$ for X+Y, Y
+From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$\\
+\begin{align*}
+\Sigma_{TZ} &= \begin{bmatrix}
+   1   &   1\\
+   0   &   1
+\end{bmatrix} \sigma_X^2 
+\begin{bmatrix}
+   1    & \rho \\
+   \rho &  1 
+\end{bmatrix}
+\begin{bmatrix}
+   1   &   0\\
+   1   &   1
+\end{bmatrix}\\
+& = \sigma_x^2
+\begin{bmatrix}
+   2 + 2\rho   &  \rho + 1\\
+   \rho + 1    &   1
+\end{bmatrix}
 \end{align*}
-\item if $\sigma_{X}^2 = \sigma_{[X,Y]}$ then it means $Y=-X$ which means they are dependant\\
-\begin{tcolorbox}
-\large \textbf{Argument}: \small $X+Y, X$ can be independent if and only if  $\sigma_{[X-Y,X]} = 0$. But $\sigma_{[X-Y,X]} = 0 \implies Y=-X$, hence they are dependant irrespective of $\sigma_X = \sigma_Y$
-\end{tcolorbox}
-\end{enumerate}
+$\Sigma_{TZ}$ is not a diagonal matrix, so components of TZ are not independent
 
-\item \large{Testing for independence of X+Y,X-Y}
-\begin{enumerate}
-\item \begin{align*}
-& \hspace{5pt} \sigma_{[X+Y, X-Y]}\\
-&= \sigma_{[(X+Y), X]}- \sigma_{[(X+Y), Y]} \\
-&= \sigma_{[X,X]} + \sigma_{[X,Y]} - \sigma_{[X,X]} - \sigma_{[X,Y]}  \\
-&= \sigma_X^2 - \sigma_Y^2
+\subsection{Evaluating option 4}
+X+Y and X-Y can be written as 
+$\begin{bmatrix}
+    1 &  1 \\
+    1 & -1
+\end{bmatrix} 
+\begin{bmatrix}
+    X \\
+    Y
+\end{bmatrix}$\\
+From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$
+
+\begin{align*}
+    \Sigma_{TZ} &= \begin{bmatrix}
+   1   &   1\\
+   1   &   -1
+\end{bmatrix} \sigma_X^2 
+\begin{bmatrix}
+   1    & \rho \\
+   \rho &  1 
+\end{bmatrix}
+\begin{bmatrix}
+   1   &   1\\
+   1   &   -1
+\end{bmatrix}\\
+&= \sigma_x^2 \begin{bmatrix}
+    1 + \rho   &   \rho + 1\\
+    1 - \rho   &    \rho - 1
+\end{bmatrix} 
+\begin{bmatrix}
+   1   &   1\\
+   1   &   -1
+\end{bmatrix} \\&=
+\begin{bmatrix}
+   2+\rho    &     0\\
+   0         &     2-2\rho
+\end{bmatrix}
 \end{align*}
-
-\item Now testing for $\sigma_1 = \sigma_2 $ $\implies$ $\sigma_{[X+Y,X-Y]}= 0$
-\item Hence testing for   $\sigma_1 = \sigma_2 \implies X+Y, X-Y$ are independent.
-\end{enumerate}
-\end{enumerate}
-
-\large \textbf{Appendix}\\
-Co variance is a measure of how much two random variables vary together
-\begin{enumerate}
-    \item \large $\sigma_{[X+Y,Z]} = \sigma_{[X,Z]} + \sigma_{[Y,Z]}$
-    \begin{align*}
-        \sigma_{[X+Y,Z]} &= \mathbf{E[((X+Y) - E(X+Y)) (Z - EZ)^T ]}\\
-        &= \mathbf{E((X+Y - \mu_{X}-\mu_{Y})  (Z^T -\mu_{Z}^T ))}\\
-        &= \mathbf{E(XZ^T-X\mu_z^T + YZ^T - Y\mu_Z^T - \mu_X Z^T+ \mu_X\mu_Z^T-
-        \mu_YZ^T+\mu_Y\mu_Z^T)}\\
-        &= \mathbf{E((XZ^T-X\mu_Z^T-\mu_XZ^T+\mu_x\mu_z^T) + (YZ^T-Y\mu_Z^T-\mu_YZ^T+\mu_Y\mu_Z^T))}\\
-        &= \mathbf{E((X-\mu_X)(Z^T-\mu_Z^T)+ (Y-\mu_Y)(Z^T-\mu_Z^T))}\\
-        &= \mathbf{E((X-\mu_X)(Z-\mu_Z)^T) + E((Y-\mu_Y)(Z-\mu_Z)^T)}\\
-        &=\mathbf{\sigma_{[X,Z]} + \sigma_{[Y,Z]}}\\
-    \end{align*}
-    
-    \item \large  $ \sigma_{[X,Y]}= \sigma_{[X]}^2$\\
-    \begin{align*}
-        \sigma_{[X,Y]} &= \mathbf{E[(X-\mu_X) (Y-\mu_Y)^T]},
-        \quad \textit{if}\quad Y=X \\
-        \sigma_{[X,X]} &= \mathbf{E[(X-\mu_X) (X-\mu_X)^T]}\\
-        &=\sigma_X^2
-    \end{align*}
-    
-    \item if $\sigma{[X,Y}] = \sigma{[X]}^2 \quad \textit{then} \quad X=Y$\\
-    From 2 it follows that  $\sigma{[X,Y}] = \sigma{[X]}^2$  when X=Y\\
-\end{enumerate}
+\textbf{Hence option 4 is correct}
 \end{document}
