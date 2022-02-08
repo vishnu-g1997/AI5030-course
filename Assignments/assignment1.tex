@@ -55,7 +55,7 @@ If X, Y, which  are independent, then they are un-correlated or their co-varianc
 \end{align*}\\
 \subsection{Co-variance Matrix}
     $\Sigma = [[\mathbf{Z} - E(\mathbf{Z})][\mathbf{Z} - E(\mathbf{Z})]^T]$\\
-    \\\textit{When}, \hspace{5pt} \textbf{Z = TZ}, \hspace{5pt} \textit{Where T is a transformation}\\
+    \\\textit{When}, \hspace{5pt} $\mathbf{Z^{'} = TZ}$, \hspace{5pt} \textit{Where T is a transformation}\\
 \begin{align*}
     \Sigma_{TZ} &= [[\mathbf{TZ} - E(\mathbf{TZ})][\mathbf{TZ} - E(\mathbf{TZ})]^T]\\
     &= [[T\mathbf{Z} - T E(\mathbf{Z})][T\mathbf{Z} - TE(\mathbf{Z})]^T]\\
@@ -207,7 +207,7 @@ From Eq. 1 $\Sigma_{TZ} = [T\Sigma T^T]$
    1   &   -1
 \end{bmatrix} \\&=
 \begin{bmatrix}
-   2+\rho    &     0\\
+   2+2\rho    &     0\\
    0         &     2-2\rho
 \end{bmatrix}
 \end{align*}
