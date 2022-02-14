@@ -37,77 +37,175 @@
 \rfoot{https://github.com/vishnu-g1997/AI5030-course }
 
 \begin{document}
-\large \textbf{Assignment 3 - Problem 56 Dec-2018 Paper}\\
+\large  {Assignment 3 - Problem 56 Dec-2018 Paper}\\
 \\
-Consider a linear model $Y_1$ = $\theta_1 + \theta_2 + \epsilon_i$ for $l = 1,2$ and $Y_1 = \theta_1-\theta_3 + \epsilon$ for l = 3,4, where $\epsilon_i$ are independent with $R(\epsilon_i) = 0$, $Var (\epsilon_i) = \sigma ^{2} > 0$ for i = 1, ... 4, and $\theta_1,... \theta_3 \in R$. Which of the following parametric function is estimable? 
+Consider a linear model $Y_l$ = $\theta_1 + \theta_2 + \epsilon_l$ for $l = 1,2$ and $Y_l = \theta_1-\theta_3 + \epsilon$ for l = 3,4, where $\epsilon_l$ are independent with $R(\epsilon_i) = 0$, $Var (\epsilon_i) = \sigma ^{2} > 0$ for i = 1, ... 4, and $\theta_1,... \theta_3 \in R$. Which of the following parametric function is estimable? 
 \\
 (A) $\theta_1 + \theta_3$ \\
 (B) $\theta_2 - \theta_3$  \\
 (C) $\theta_2 + \theta_3$ \\
-(D) $\theta_2 + \theta_2 + \theta_3$ \\
+(D) $\theta_1 + \theta_2 + \theta_3$ \\
 
 Answer: C, $\theta_2 + \theta_3$ \\
 \section{Solution:} 
-\subsection{Parametric estimation using Maximum Likelihood}
-Given Mean of the errors in the both parametric functions is 0 and variance is greater than zero. Assuming the error is Gaussian distributed, the deterministic function can be written as follows\\
-\begin{center}
-    t = y($X,\Theta$) + $\epsilon$\\
-\end{center}
-Which means imposing a error distribution on the deterministic function, then we can write 
-\begin{center}
-    $P(\mathbf{t/y(X,\Theta)},\sigma^2) = N(\mathbf{t/y(X,\Theta)},\sigma^2)$\\
-\end{center}
-    Where $\Theta = {\theta_1, \theta_2 ... \theta_n}$ are the parameters to estimated \\
-    $X = {x_1, x_2..., x_n}$ are input data sets\\
-    t = ${t_1,t_2...t_n}$ is the output corresponding to $X = {x_1, x_2..., x_n}$\\
-This equation can be represented and solved by taking Log on both sides\\
-\begin{align*}
-    P(\mathbf{t/y(X,\Theta)},\sigma^2) &= \Pi_{n=1}^N{N(t_n/\Theta^T {X_i}, \sigma^2)}\\
-    \ln{P(\mathbf{t/y(X,\Theta)},\sigma^2)} &= \Sigma_{n=1}^N \ln{{N(t_n/\Theta^T {X_i}, \sigma^2)}}\\
-\end{align*}
-Solving equation on RHS without summation. It is a univariate gaussian
-\begin{align*}
-    \Sigma_{n=1}^{N} N(t_n/\Theta^T {X_i}, \sigma^2) &= \Sigma_{n=1}^{N} \frac{1}{\sqrt{2\pi\sigma^2}} \exp \{{{\frac{-1}{2\sigma^2}(t_n-\Theta^TX_n)^2}}\}\\
-     \ln{N(t_n/\Theta^T {X_n}, \sigma^2)} &= - {\frac{1}{2}\ln{\frac{1}{\sigma^2}}} - \frac{1}{2} \ln{2\pi} - \frac{1}{2\sigma^2} \Sigma_{n=1}^{N} {(t_n - \Theta^T X_n)^2}
-\end{align*}
-To find the minima of the error, we take gradient on both sides, minimising error is equivalent to maximising the $\Theta$\\Setting Gradient of $\nabla\ln{P(\mathbf{t/y(X,\Theta)},\sigma^2)}$ = 0 we get
-\begin{align*}
-    0 &= \frac{\partial}{\partial \Theta} { \frac{1}{2} \Sigma_{n=1}^{N}  {(t_n - \Theta^T X_n)^2}}\\
-    &= \frac{\partial}{\partial \Theta} \Sigma_{n=1}^{N} {(t_n - \Theta^T X_n)}  \frac{\partial}{\partial \Theta} \Theta^T X_n\\
-    &=\Sigma_{n=1}^{N} {(t_n - \Theta^T X_n)} {X_n}^T\\
-\end{align*}
-We know that $\Theta$ is a vector.
-\begin{equation*}
-    \frac{\partial}{\partial a} {a^TX} = X^T\\
-    \textit{where a is a vector}
-\end{equation*}
-Now,
-\begin{align*}
-    0 &= \Sigma_{n=1}^{N} {(t_n - \Theta^T X_n)} {X_n}^T\\
-      &= \Sigma_{n=1}^{N} (t_n) (X_n)^T - \Theta^T\Sigma_{n=1}^{N} ( X_n){X_n^T}\\
-      &= (t_n) (X_n)^T - \Theta^T ( X_n){X_n^T}\\
-\end{align*}
-{Taking whole transpose and solving it for $\Theta$ we get}\\
+Given,
 \begin{equation}
-    \Theta = [X^TX]^{-1}[X^T\Bar{t}]
+    Y_i = \theta_1 + \theta_2 + \epsilon_l \quad \textit{for l=1,2} \\
 \end{equation}
-
-
-\subsection{Evaluating options for ML}
-In all the given options ML can be estimated when error associated with the parametric equations can be minimised by applying derivative on the error and equating it to zero.
-Given
-\begin{align}
-     Y_1 = \theta_1 + \theta_2 + \epsilon_i \hspace{5pt} l = 1,2\\
-     Y_1 = \theta_1-\theta_3 + \epsilon_j  \hspace{5pt}  l = 3,4
-\end{align}
-(3) subtracted from (2) gives us
+\begin{equation}
+    Y_i = \theta_1 - \theta_3 + \epsilon_l \quad \textit{for l=3,4}
+\end{equation}
+Which means,
 \begin{align*}
-     \theta_2 + \theta_3 + \epsilon_i - \epsilon_j = 0\\
-     \theta_2 + \theta_3 = \epsilon_j - \epsilon_i
+     Y_1 &= \theta_1 + \theta_2 + \epsilon_1 \\ 
+     Y_2 &= \theta_1 + \theta_2 + \epsilon_2 \\
+     Y_3 &= \theta_1 - \theta_3 + \epsilon_3 \\
+     Y_4 &= \theta_1 - \theta_3 + \epsilon_4 
 \end{align*}
-Parametric function $\theta_2 + \theta_3$ can be estimated by finding ML for (2) and ML for (3) and then subtracting them both. ML can be found from equation (1)\\
-For all other Parametric equations error is not known to take a derivative and equate it to zero.\\
-Hence the correct answer is C
+Matrix Notation\\
+\\
+$\begin{bmatrix}
+    Y_1\\
+    Y_2\\
+    Y_3\\
+    Y_4\\
+\end{bmatrix}$ = 
+$\begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix}$ 
+$\begin{bmatrix}
+    &\theta_1&\\
+    &\theta_2&\\
+    &\theta_3&
+\end{bmatrix}$ + 
+$\begin{bmatrix}
+    &e_1& \\
+    &e_2& \\
+    &e_3& \\
+    &e_4&
+\end{bmatrix}$ \\
+\\
+Which can be represented as 
+\begin{equation*}
+    Y = X \beta + \epsilon_i
+\end{equation*}
+\\
+Given R($\epsilon_i$) = 0, $\epsilon_i$ is In dependant, Var( $\epsilon_i$) = $\sigma^2 > 0$ for all $i = 1,2,3,4$\\
+\\
+In dependence implies that all of them un-correlated and given Var($\epsilon_i$) = $\sigma^2$. So co-variance matrix is of form $\sigma^2$ I. Which means the co-variance is spherical.
 
+\subsection{Estimable parametric function}
+ A parametric functional $\varphi(\beta)$ is estimable if it is uniquely determined by $X \beta$ in the sense that $\varphi(\beta_1) = \varphi (\beta_2)$ whenever $\beta_1,\beta_2 \in R^k$ satisfy $X \beta_1 = X \beta_2$.
+This is known as Gauss-Markov property of estimable parameters
 
+\subsection{Evaluating Options}
+For $\beta_1$ = $\begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix}$ and $\beta_2$ = $\begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix}$\\
+$X\beta_1$ = $\begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix}$ $\begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix}$ = $\begin{bmatrix} 1 \\ 1 \\ 0\\ 0\end{bmatrix}$ \\
+$X\beta_2$ = $\begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix}$ $\begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix}$ = $\begin{bmatrix} 1 \\ 1 \\ 0\\ 0\end{bmatrix}$ \\
+\\
+\begin{enumerate}
+\item \textbf{Option A}\quad $\theta_1 + \theta_3$\\
+\begin{align*}
+    \varphi(\beta_1) &= \begin{bmatrix} 1& 0& 1 \end{bmatrix} \begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix} = 0\\
+    \varphi(\beta_2) &= \begin{bmatrix} 1& 0& 1 \end{bmatrix} \begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix} = 2\\
+    \varphi(\beta_1) &\neq \varphi(\beta_2)
+\end{align*}
+
+\item \textbf{Option B}\quad $\theta_2 - \theta_3$\\
+\begin{align*}
+    \varphi(\beta_1) &= \begin{bmatrix} 0& 1& -1 \end{bmatrix} \begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix} = 1\\
+    \varphi(\beta_2) &= \begin{bmatrix} 0& 1& -1 \end{bmatrix} \begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix} = -1\\
+    \varphi(\beta_1) &\neq \varphi(\beta_2)
+\end{align*}
+
+\item \textbf{Option D}\quad $\theta_1 + \theta_2 + \theta_3$\\
+\begin{align*}
+    \varphi(\beta_1) &= \begin{bmatrix} 1& 1& 1 \end{bmatrix} \begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix} = 1\\
+    \varphi(\beta_2) &= \begin{bmatrix} 1& 1& 1 \end{bmatrix} \begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix} = 2\\
+    \varphi(\beta_1) &\neq \varphi(\beta_2)
+\end{align*}
+
+\item \textbf{Option C} $\theta_2 + \theta_3$\\
+Let 
+$\beta_1 = \begin{bmatrix} i_1\\ j_1\\ k_1\end{bmatrix}  \beta_2 = \begin{bmatrix} i_2\\ j_2\\ k_2 \end{bmatrix}\\$
+\begin{align*}
+\textit{X}\beta_1 &= \begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix} \begin{bmatrix} i_1\\ j_1\\ k_1 \end{bmatrix} = \begin{bmatrix} i_1+j_1 \\ i_1+j_1 \\ i_1-k_1\\  i_1-k_1\end{bmatrix}\\
+\textit{X}\beta_2 &= \begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix} \begin{bmatrix} i_2\\ j_2\\ k_2 \end{bmatrix} = \begin{bmatrix} i_2+j_2 \\ i_2+j_2 \\ i_2-k_2\\  i_2-k_2\end{bmatrix}\\
+\end{align*}
+
+If $\beta_1,\beta_2$ satisfy $X\beta_1 =X\beta_2 $\\
+then, $i_1+j_1 = i_2+j_2, \quad i_1-k_1 = i_2-k_2$ $\implies$ $j_1 + k_1= j_2 + k_2$
+\begin{align*}
+\varphi(\beta_1) &= \begin{bmatrix} 0& 1& 1 \end{bmatrix} \begin{bmatrix} i_1&\\ j_1&\\ k_1& \end{bmatrix} = j_1 + k_1\\ 
+\varphi(\beta_1) &= \begin{bmatrix} 0& 1& 1 \end{bmatrix} \begin{bmatrix} i_2&\\ j_2&\\ k_3& \end{bmatrix} = j_2 + k_2\\ 
+\end{align*}
+ $\varphi(\beta_1)  = \varphi(\beta_2)$ for any $\beta_1, \beta_2$ so \textbf{Option C} is correct answer
+\end{enumerate}
+\subsection{Generalised equation for least squares}
+Let  {X} be input matrix,  {$\Bar{\theta}$} be the parameter vector to be estimated. Then 
+\begin{equation}
+     {Y} =  {X} \Bar{\theta}
+\end{equation}
+Let $\Bar{t}$ be estimated targets.\\
+Then error 
+\begin{equation*}
+  \Bar{e} = [\Bar{t} -  {Y}]
+\end{equation*}
+\begin{equation*}
+  \Bar{e}^2 = \frac{1}{2} Tr[[\Bar{t} -  {Y}][\Bar{t} -  {Y}]^T]
+\end{equation*}
+Taking derivative w.r.t $\Bar{\theta}$ and equating it to 0 to minimise the error and find best value of $\Bar{\theta}$. Let the objective function be represented as $J(\theta)$\\
+By chain rule
+\begin{align*}
+    \nabla J(\Bar{\theta}) &= \frac{\partial J(\Bar{\theta})}{\partial \Bar{\theta}} \\
+    &= \Big [\frac{\partial  {Y})}{\partial \Bar{\theta} }\Big] \Big [\frac{\partial \Bar{e}}{\partial  {Y} }\Big] \Big[\frac{\partial J(\Bar{\theta})}{\partial \Bar{e}}\Big]
+\end{align*}
+
+\begin{equation*}
+\frac{\partial  {Y}}{\partial \Bar{\theta} } = \frac{\partial  {X\Bar{\theta}}}{\partial \Bar{\theta} } =  {X^T}
+\end{equation*}
+\begin{equation*}
+\frac{\partial \Bar{e}}{\partial  {Y} } = \frac{\partial {}}{\partial  {Y} }[\Bar{t} -  {Y}] = -I
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial J(\Bar{\theta})}{\partial \Bar{e}} = \frac{\partial}{\partial \Bar{e}} [\Bar{e} \Bar{e}^T] = 2\Bar{e}
+\end{equation*}
+\begin{align*}
+ \nabla J(\Bar{\theta}) = X^T \Bar{e} = 0\\
+ \implies & X^T [\Bar{t} -  {Y}] = 0\\
+ \implies & X^T [\Bar{t}] =  X^T Y\\
+ \implies & \Bar{\theta} = [X^TX]^{-1}[X^T\Bar{t}]
+\end{align*}
+
+\subsection{Evaluating options}
+Subtracting equation (2) from equation (1), we get parametric function 
+\begin{equation*}
+     \theta_2 + \theta_3
+\end{equation*}
+Whose Parameters can be estimated by finding least squares estimation of (1) - (2). But for all the other options parametric estimation can not be done given (1) and (2), as we can not write them as linear combinations of (1) and (2).\\
+Hence the answer is C
 \end{document}
