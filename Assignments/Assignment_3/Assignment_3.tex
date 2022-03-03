@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{gensymb}
+\singlespacing
+\usepackage[cmex10]{amsmath}
+\usepackage{caption}
+
+\usepackage{amsthm}
+
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{steinmetz}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{graphicx}
+\usepackage{tkz-euclide}
+
+\title{Assignment 3 - Problem 56 Dec-2018 Paper}
+\author{Vishnu Gollamudi - AI22MTECH02001}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{https://github.com/vishnu-g1997/AI5030-course }
+
+\begin{document}
+\large  {Assignment 3 - Problem 56 Dec-2018 Paper}\\
+\\
+Consider a linear model $Y_l$ = $\theta_1 + \theta_2 + \epsilon_l$ for $l = 1,2$ and $Y_l = \theta_1-\theta_3 + \epsilon$ for l = 3,4, where $\epsilon_l$ are independent with $R(\epsilon_i) = 0$, $Var (\epsilon_i) = \sigma ^{2} > 0$ for i = 1, ... 4, and $\theta_1,... \theta_3 \in R$. Which of the following parametric function is estimable? 
+\\
+(A) $\theta_1 + \theta_3$ \\
+(B) $\theta_2 - \theta_3$  \\
+(C) $\theta_2 + \theta_3$ \\
+(D) $\theta_1 + \theta_2 + \theta_3$ \\
+
+Answer: C, $\theta_2 + \theta_3$ \\
+\section{Solution:} 
+Given,
+\begin{equation}
+    Y_i = \theta_1 + \theta_2 + \epsilon_l \quad \textit{for l=1,2} \\
+\end{equation}
+\begin{equation}
+    Y_i = \theta_1 - \theta_3 + \epsilon_l \quad \textit{for l=3,4}
+\end{equation}
+Which means,
+\begin{align*}
+     Y_1 &= \theta_1 + \theta_2 + \epsilon_1 \\ 
+     Y_2 &= \theta_1 + \theta_2 + \epsilon_2 \\
+     Y_3 &= \theta_1 - \theta_3 + \epsilon_3 \\
+     Y_4 &= \theta_1 - \theta_3 + \epsilon_4 
+\end{align*}
+Matrix Notation\\
+\\
+$\begin{bmatrix}
+    Y_1\\
+    Y_2\\
+    Y_3\\
+    Y_4\\
+\end{bmatrix}$ = 
+$\begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix}$ 
+$\begin{bmatrix}
+    &\theta_1&\\
+    &\theta_2&\\
+    &\theta_3&
+\end{bmatrix}$ + 
+$\begin{bmatrix}
+    &e_1& \\
+    &e_2& \\
+    &e_3& \\
+    &e_4&
+\end{bmatrix}$ \\
+\\
+Which can be represented as 
+\begin{equation*}
+    Y = X \beta + \epsilon_i
+\end{equation*}
+\\
+Given R($\epsilon_i$) = 0, $\epsilon_i$ is In dependant, Var( $\epsilon_i$) = $\sigma^2 > 0$ for all $i = 1,2,3,4$\\
+\\
+In dependence implies that all of them un-correlated and given Var($\epsilon_i$) = $\sigma^2$. So co-variance matrix is of form $\sigma^2$ I. Which means the co-variance is spherical.
+
+\subsection{Estimable parametric function}
+ A parametric functional $\varphi(\beta)$ is estimable if it is uniquely determined by $X \beta$ in the sense that $\varphi(\beta_1) = \varphi (\beta_2)$ whenever $\beta_1,\beta_2 \in R^k$ satisfy $X \beta_1 = X \beta_2$.
+This is known as Gauss-Markov property of estimable parameters
+
+\subsection{Evaluating Options}
+For $\beta_1$ = $\begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix}$ and $\beta_2$ = $\begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix}$\\
+$X\beta_1$ = $\begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix}$ $\begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix}$ = $\begin{bmatrix} 1 \\ 1 \\ 0\\ 0\end{bmatrix}$ \\
+$X\beta_2$ = $\begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix}$ $\begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix}$ = $\begin{bmatrix} 1 \\ 1 \\ 0\\ 0\end{bmatrix}$ \\
+\\
+\begin{enumerate}
+\item \textbf{Option A}\quad $\theta_1 + \theta_3$\\
+\begin{align*}
+    \varphi(\beta_1) &= \begin{bmatrix} 1& 0& 1 \end{bmatrix} \begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix} = 0\\
+    \varphi(\beta_2) &= \begin{bmatrix} 1& 0& 1 \end{bmatrix} \begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix} = 2\\
+    \varphi(\beta_1) &\neq \varphi(\beta_2)
+\end{align*}
+
+\item \textbf{Option B}\quad $\theta_2 - \theta_3$\\
+\begin{align*}
+    \varphi(\beta_1) &= \begin{bmatrix} 0& 1& -1 \end{bmatrix} \begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix} = 1\\
+    \varphi(\beta_2) &= \begin{bmatrix} 0& 1& -1 \end{bmatrix} \begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix} = -1\\
+    \varphi(\beta_1) &\neq \varphi(\beta_2)
+\end{align*}
+
+\item \textbf{Option D}\quad $\theta_1 + \theta_2 + \theta_3$\\
+\begin{align*}
+    \varphi(\beta_1) &= \begin{bmatrix} 1& 1& 1 \end{bmatrix} \begin{bmatrix} 0&\\ 1&\\ 0& \end{bmatrix} = 1\\
+    \varphi(\beta_2) &= \begin{bmatrix} 1& 1& 1 \end{bmatrix} \begin{bmatrix} 1&\\ 0&\\ 1& \end{bmatrix} = 2\\
+    \varphi(\beta_1) &\neq \varphi(\beta_2)
+\end{align*}
+
+\item \textbf{Option C} $\theta_2 + \theta_3$\\
+Let 
+$\beta_1 = \begin{bmatrix} i_1\\ j_1\\ k_1\end{bmatrix}  \beta_2 = \begin{bmatrix} i_2\\ j_2\\ k_2 \end{bmatrix}\\$
+\begin{align*}
+\textit{X}\beta_1 &= \begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix} \begin{bmatrix} i_1\\ j_1\\ k_1 \end{bmatrix} = \begin{bmatrix} i_1+j_1 \\ i_1+j_1 \\ i_1-k_1\\  i_1-k_1\end{bmatrix}\\
+\textit{X}\beta_2 &= \begin{bmatrix}
+    &1&   1&   0&\\
+    &1&   1&   0&\\
+    &1&   0&  -1&\\
+    &1&   0&  -1&\\
+\end{bmatrix} \begin{bmatrix} i_2\\ j_2\\ k_2 \end{bmatrix} = \begin{bmatrix} i_2+j_2 \\ i_2+j_2 \\ i_2-k_2\\  i_2-k_2\end{bmatrix}\\
+\end{align*}
+
+If $\beta_1,\beta_2$ satisfy $X\beta_1 =X\beta_2 $\\
+then, $i_1+j_1 = i_2+j_2, \quad i_1-k_1 = i_2-k_2$ $\implies$ $j_1 + k_1= j_2 + k_2$
+\begin{align*}
+\varphi(\beta_1) &= \begin{bmatrix} 0& 1& 1 \end{bmatrix} \begin{bmatrix} i_1&\\ j_1&\\ k_1& \end{bmatrix} = j_1 + k_1\\ 
+\varphi(\beta_1) &= \begin{bmatrix} 0& 1& 1 \end{bmatrix} \begin{bmatrix} i_2&\\ j_2&\\ k_3& \end{bmatrix} = j_2 + k_2\\ 
+\end{align*}
+ $\varphi(\beta_1)  = \varphi(\beta_2)$ for any $\beta_1, \beta_2$ so \textbf{Option C} is correct answer
+\end{enumerate}
+\subsection{Generalised equation for least squares}
+Let  {X} be input matrix,  {$\Bar{\theta}$} be the parameter vector to be estimated. Then 
+\begin{equation}
+     {Y} =  {X} \Bar{\theta}
+\end{equation}
+Let $\Bar{t}$ be estimated targets.\\
+Then error 
+\begin{equation*}
+  \Bar{e} = [\Bar{t} -  {Y}]
+\end{equation*}
+\begin{equation*}
+  \Bar{e}^2 = \frac{1}{2} Tr[[\Bar{t} -  {Y}][\Bar{t} -  {Y}]^T]
+\end{equation*}
+Taking derivative w.r.t $\Bar{\theta}$ and equating it to 0 to minimise the error and find best value of $\Bar{\theta}$. Let the objective function be represented as $J(\theta)$\\
+By chain rule
+\begin{align*}
+    \nabla J(\Bar{\theta}) &= \frac{\partial J(\Bar{\theta})}{\partial \Bar{\theta}} \\
+    &= \Big [\frac{\partial  {Y})}{\partial \Bar{\theta} }\Big] \Big [\frac{\partial \Bar{e}}{\partial  {Y} }\Big] \Big[\frac{\partial J(\Bar{\theta})}{\partial \Bar{e}}\Big]
+\end{align*}
+
+\begin{equation*}
+\frac{\partial  {Y}}{\partial \Bar{\theta} } = \frac{\partial  {X\Bar{\theta}}}{\partial \Bar{\theta} } =  {X^T}
+\end{equation*}
+\begin{equation*}
+\frac{\partial \Bar{e}}{\partial  {Y} } = \frac{\partial {}}{\partial  {Y} }[\Bar{t} -  {Y}] = -I
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial J(\Bar{\theta})}{\partial \Bar{e}} = \frac{\partial}{\partial \Bar{e}} [\Bar{e} \Bar{e}^T] = 2\Bar{e}
+\end{equation*}
+\begin{align*}
+ \nabla J(\Bar{\theta}) = X^T \Bar{e} = 0\\
+ \implies & X^T [\Bar{t} -  {Y}] = 0\\
+ \implies & X^T [\Bar{t}] =  X^T Y\\
+ \implies & \Bar{\theta} = [X^TX]^{-1}[X^T\Bar{t}]
+\end{align*}
+
+\subsection{Evaluating options}
+Subtracting equation (2) from equation (1), we get parametric function 
+\begin{equation*}
+     \theta_2 + \theta_3
+\end{equation*}
+Whose Parameters can be estimated by finding least squares estimation of (1) - (2). But for all the other options parametric estimation can not be done given (1) and (2), as we can not write them as linear combinations of (1) and (2).\\
+Hence the answer is C
+\end{document}
