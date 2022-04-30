@@ -1,0 +1,152 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+%\{AI5030: Probability and Stochastic Process}"""
+\title{Traffic Flow Prediction at signalised road intersections Using Markov chain and ANN. A comparison}
+
+% \date{\today}
+\date{}
+\author{\textbf{Vishnu G} :  \textbf{AI22MTECH02001}}
+\institute{Indian Institute of Technology Hyderabad}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+\begin{document}
+\maketitle
+
+\begin{frame}{Contents}
+\title{}
+\begin{itemize}
+ \item Motivation
+ \item Markov Chain Model of Traffic congestion prediction
+ \item ANN for Traffic congestion prediction
+ \item Comparison
+ \item Conclusion
+ \item Reference
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Motivation}
+\begin{itemize}
+    \item Traffic congestion is a prevailing problem globally
+    \item Predicting Traffic congestion is necessary for traffic modeling, better planning and road traffic control 
+    \item Markov chain models are heuristic sequential models, which find the next traffic state based on present state
+    \item Artificial Neural networks like RNNs and LSTMs can store continuous sequential information of all past states to predict the next state
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Markov Chain for Traffic congestion prediction}
+\begin{itemize}
+\item States 
+\begin{itemize}
+\item Low Traffic (State - a)
+\item Moderate Traffic ( State - b)
+\item High Traffic (State - c)
+\end{itemize}
+\item{State Transition Matrix}
+\begin{align*}
+\begin{bmatrix}
+    P_{a,a}  &  P_{a,b} &  P_{a,c} \\
+    P_{b,a}  &  P_{b,b} &  P_{b,c} \\
+    P_{c,a}  &  P_{c,b} &  P_{c,c}
+\end{bmatrix}
+\end{align*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item This problem is solved using assumption of First order Markov chain, where next state 
+depends only the present 
+\item{Steady State probabilities}
+\begin{align*}
+\begin{bmatrix} e1 & e2 & e3 \end{bmatrix} 
+= 
+\begin{bmatrix} e1 & e2 & e3 \end{bmatrix} \begin{bmatrix}
+    P_{a,a}  &  P_{a,b} &  P_{a,c} \\
+    P_{b,a}  &  P_{b,b} &  P_{b,c} \\
+    P_{c,a}  &  P_{c,b} &  P_{c,c}
+\end{bmatrix}
+\end{align*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Contd..}
+\begin{itemize} 
+\item  Traffic is observed on hourly basis and one transition matrix each is maintained of each weekday
+\item Transition matrices are updated after observation are made
+\item Process of moving from one state to another state can be derived from the equation
+\begin{align*}
+    P(K) = P(0) \times P_{i,j}^k
+\end{align*}
+Where,
+\begin{itemize}
+\item P(0) is Traffic volume for a low, moderate, and high vehicle movement
+\item $P_{i,j}$ is state transition Probability matrix
+\item P(K) Probability of at a particular hour on a particular day of the week
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Contd..}
+\begin{itemize}
+\item Probabilities for every next hour for every possible state transition is calculated from 
+the state transition matrix
+\item Present state is identified after observing the density of incoming vehicles
+\item Next state is predicted as whichever state transition has highest probability.
+\item Transition matrix is updated after every observation 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ANN for Traffic congestion prediction}
+Data sets were prepared after observing speed, distance of vehicles 
+and then output observed was in terms of time taken for vehicles to cross the signal.
+\begin{itemize}
+    \item Inputs : Speed, Distance
+    \item Outputs: Time taken to cross the signal in the intersection
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Contd..}
+\begin{itemize}
+    \item Neural network architecture and training conditions
+    \begin{itemize}
+    \item Number of hidden layers : 1
+    \item Number of neurons in hidden layer : 9
+    \item Number of epochs the NN is trained 100
+    \item Best results on test data observed at epoch 7
+    \end{itemize}
+    \item After time needed for each vehicle to cross signal is calculated, we can find if traffic will be congested at every continuous intervals.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison and Conclusions}
+\begin{itemize}
+    \item According to the paper ANN showed better performance when compared to heuristic model like Markov chains
+    \item Although Markov chains show slightly lesser performance, computation power required is quite less when compared to ANN.
+    \item Markov chains are far less complex when compared to neural networks but give comparable and considerable performance
+    
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reference}
+    Title: Traffic flow Prediction at Signalized Road Intersections: 
+    A case of Markov Chain and Artificial Neural Network Model
+    Link: https://ieeexplore.ieee.org/document/9476173 \\
+    Published in : 2021 IEEE 12th International Conference on Mechanical and Intelligent Manufacturing Technologies
+    
+\end{frame}
+\end{document}
